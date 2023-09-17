@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./main.css" />
+    <script src="./main.js" defer></script>
   </head>
   <body>
     <div class="main_img_wrapper">
@@ -46,85 +47,20 @@
       <section class="video_section">
         <div class="fixed_wrapper">
           <video class="video" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" muted loop></video>
+          <div class="fixed_desc">
+            <div>
+              <p>혁신이 만든</p>
+              <p>압도적인 성장</p>
+            </div>
+          </div>
         </div>
       </section>
+      <div class="bank_beyond_wrapper">
+        <div class="bank_beyond">
+          <img src="./images/05-text.png" alt="샘플텍스트" />
+        </div>
+      </div>
+      <div class="white_wrapper"></div>
     </main>
-    <script>
-      const videoPlayBack = 500;
-      const videoSection = document.querySelector('.video_section');
-      const videoWrapper = document.querySelector('.fixed_wrapper');
-      const videoElement = document.querySelector('.video');
-
-      window.addEventListener('scroll', () => {
-        const windowScrollY = window.scrollY;
-        const listContainer = document.querySelector('.list_item_wrapper');
-        const listContainerStart = listContainer.offsetTop - 600;
-        const listContainerEnd = listContainer.offsetTop;
-        const listItem = document.querySelectorAll('.list-item');
-        const itemHeight = (listContainerEnd - listContainerStart) / listItem.length;
-
-        listItem.forEach((item, idx) => {
-          if (item.classList.contains('act')) {
-            item.classList.remove('act');
-          }
-          if (windowScrollY > listContainerStart && windowScrollY < listContainerEnd) {
-            const tagetIndex = parseInt((windowScrollY - listContainerStart) / itemHeight);
-            if (idx === tagetIndex) {
-              item.classList.add('act');
-            } else {
-              item.classList.remove('act');
-            }
-          }
-        });
-        const scrollBottom = windowScrollY + document.documentElement.clientHeight;
-        const pannel1Img = document.querySelector('.panell_img_section');
-        const panell1pos = pannel1Img.offsetTop + pannel1Img.offsetHeight + 100;
-
-        if (scrollBottom > pannel1Img.offsetTop && scrollBottom < panell1pos) {
-          const translateX = 80 - 80 * 4 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
-          const translateY = -13 + 13 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
-          const lotationDegree = 23 - 23 * 1.5 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
-          pannel1Img.children[0].style.transform = `translate(${translateX}px, ${translateY}px) rotate(${lotationDegree}deg)`;
-        }
-        //비디오 섹션이 끝나고 비디오 포지션변경
-        centerElement('.fixed_wrapper');
-        const videoSectoinEnd = videoSection.offsetTop + videoSection.offsetHeight - (videoWrapper.offsetHeight + (window.innerHeight - videoWrapper.offsetHeight) / 2);
-        if (windowScrollY > videoSectoinEnd) {
-          Object.assign(videoWrapper.style, {
-            position: 'relative',
-            top: 'initial',
-            left: 'initial',
-            transform: `translateY(${videoSection.offsetHeight - videoWrapper.offsetHeight}px)`,
-          });
-        }
-      });
-
-      videoElement.addEventListener('loadedmetadata', (e) => {
-        videoSection.style.height = videoElement.duration * videoPlayBack + 'px';
-      });
-      function centerElement(el) {
-        const element = document.querySelector(el);
-        const parent = element.parentElement;
-
-        // 스크롤이 요소의 센터에 들어 올 때
-        const viewCenter = (document.documentElement.clientHeight - element.offsetHeight) / 2;
-        const scrollCenter = parent.offsetTop - viewCenter;
-        if (window.scrollY > scrollCenter) {
-          Object.assign(element.style, {
-            position: 'fixed',
-            top: `50%`,
-            left: `50%`,
-            transform: `translate(-50%, -50%)`,
-          });
-        } else {
-          Object.assign(element.style, {
-            position: 'relative',
-            top: 'initial',
-            left: 'initial',
-            transform: 'initial',
-          });
-        }
-      }
-    </script>
   </body>
 </html>

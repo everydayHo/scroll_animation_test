@@ -89,11 +89,40 @@ body {
   transform: translate(80px, -13px) rotate(23deg);
 }
 .video_section {
-  margin-bottom: 5000px;
+  margin-bottom: 500px;
 }
 
 .video {
   display: block;
   margin: 0 auto;
-  width: 350px;
+  width: 530px;
+}
+
+.fixed_desc {
+  width: 530px;
+  margin: 0 auto;
+  color: #ffffff;
+  text-align: right;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.3;
+  transform: translateY(200px);
+  opacity: 0;
+}
+.bank_beyond_wrapper {
+  height: 380px;
+}
+.bank_beyond {
+  display: flex;
+  justify-content: center;
+}
+.bank_beyond img {
+  width: 315px;
+}
+
+.white_wrapper {
+  position: relative;
+  height: 1000px;
+  background: #eee;
+  z-index: 1;
 }
