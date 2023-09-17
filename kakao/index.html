@@ -40,17 +40,27 @@
       <li class="list-item">담보대출</li>
     </ul>
     <main>
-      <section class="panell_img">
+      <section class="panell_img_section">
         <img class="flying_santa" src="./images/santa_flying.png" alt="산타이미지" />
+      </section>
+      <section class="video_section">
+        <div class="fixed_wrapper">
+          <video class="video" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" muted loop></video>
+        </div>
       </section>
     </main>
     <script>
+      const videoPlayBack = 500;
+      const videoSection = document.querySelector('.video_section');
+      const videoWrapper = document.querySelector('.fixed_wrapper');
+      const videoElement = document.querySelector('.video');
+
       window.addEventListener('scroll', () => {
+        const windowScrollY = window.scrollY;
         const listContainer = document.querySelector('.list_item_wrapper');
         const listContainerStart = listContainer.offsetTop - 600;
         const listContainerEnd = listContainer.offsetTop;
         const listItem = document.querySelectorAll('.list-item');
-        const windowScrollY = window.scrollY;
         const itemHeight = (listContainerEnd - listContainerStart) / listItem.length;
 
         listItem.forEach((item, idx) => {
@@ -67,16 +77,54 @@
           }
         });
         const scrollBottom = windowScrollY + document.documentElement.clientHeight;
-        const pannel1Img = document.querySelector('.panell_img');
+        const pannel1Img = document.querySelector('.panell_img_section');
         const panell1pos = pannel1Img.offsetTop + pannel1Img.offsetHeight + 100;
 
         if (scrollBottom > pannel1Img.offsetTop && scrollBottom < panell1pos) {
           const translateX = 80 - 80 * 4 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
           const translateY = -13 + 13 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
-          const lotationDegree = 23 - 23 * 4 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
+          const lotationDegree = 23 - 23 * 1.5 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
           pannel1Img.children[0].style.transform = `translate(${translateX}px, ${translateY}px) rotate(${lotationDegree}deg)`;
         }
+        //비디오 섹션이 끝나고 비디오 포지션변경
+        centerElement('.fixed_wrapper');
+        const videoSectoinEnd = videoSection.offsetTop + videoSection.offsetHeight - (videoWrapper.offsetHeight + (window.innerHeight - videoWrapper.offsetHeight) / 2);
+        if (windowScrollY > videoSectoinEnd) {
+          Object.assign(videoWrapper.style, {
+            position: 'relative',
+            top: 'initial',
+            left: 'initial',
+            transform: `translateY(${videoSection.offsetHeight - videoWrapper.offsetHeight}px)`,
+          });
+        }
       });
+
+      videoElement.addEventListener('loadedmetadata', (e) => {
+        videoSection.style.height = videoElement.duration * videoPlayBack + 'px';
+      });
+      function centerElement(el) {
+        const element = document.querySelector(el);
+        const parent = element.parentElement;
+
+        // 스크롤이 요소의 센터에 들어 올 때
+        const viewCenter = (document.documentElement.clientHeight - element.offsetHeight) / 2;
+        const scrollCenter = parent.offsetTop - viewCenter;
+        if (window.scrollY > scrollCenter) {
+          Object.assign(element.style, {
+            position: 'fixed',
+            top: `50%`,
+            left: `50%`,
+            transform: `translate(-50%, -50%)`,
+          });
+        } else {
+          Object.assign(element.style, {
+            position: 'relative',
+            top: 'initial',
+            left: 'initial',
+            transform: 'initial',
+          });
+        }
+      }
     </script>
   </body>
 </html>

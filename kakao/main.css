@@ -77,13 +77,23 @@ body {
 .list-item.act::before {
   background: url('./icons/light_house.png') no-repeat left top/cover;
 }
-.panell_img {
+.panell_img_section {
   position: relative;
-  height: 3000px;
+  overflow: hidden;
+  height: 450px;
 }
 .flying_santa {
   position: absolute;
   height: 380px;
   right: -80px;
   transform: translate(80px, -13px) rotate(23deg);
+}
+.video_section {
+  margin-bottom: 5000px;
+}
+
+.video {
+  display: block;
+  margin: 0 auto;
+  width: 350px;
 }
