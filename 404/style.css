@@ -1,0 +1,131 @@
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: burlywood;
+}
+
+svg {
+  width: 100%;
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes shrinkAndGrow {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(0);
+  }
+  75% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes expandHorizontal {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes appearFromBottom {
+  from {
+    transform: translateY(1000px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes shakingUpandDown {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes soaking {
+  to {
+    transform: translateY(-250px) scale(0);
+  }
+}
+
+#planet_2 {
+  animation: rotation 4s infinite linear;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+#planet_1 {
+  animation: rotation 4s infinite linear;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+#star_1,
+#star_2,
+#star_3 {
+  animation: shrinkAndGrow 2s infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+#star_4,
+#star_5,
+#star_6 {
+  animation: shrinkAndGrow 2.5s infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+#star_7,
+#star_8,
+#star_9 {
+  animation: shrinkAndGrow 4s infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+#UFO-beam {
+  animation: expandHorizontal 3.5s;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+#number-0 {
+  animation: appearFromBottom 3s ease-in-out;
+}
+
+#alien_hand-L,
+#alien_hand-R {
+  animation: shakingUpandDown 2s infinite;
+}
+
+#number-0-soaking {
+  animation: soaking 2s;
+  transform-box: fill-box;
+  transform-origin: center;
+}

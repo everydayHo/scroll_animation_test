@@ -1,0 +1,89 @@
+@charset "UTF-8";
+@import url('./reset.css');
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #333;
+  width: 100%;
+  height: 100%;
+}
+.main_img_wrapper {
+  padding-top: 160px;
+  text-align: center;
+}
+.main_img_wrapper img {
+  width: 320px;
+}
+
+.intro_main {
+  color: #fff;
+  margin: 54px auto 0;
+  width: 300px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 500;
+}
+.intro_main p:first-child {
+  padding-bottom: 20px;
+}
+
+.intro_main .join_us {
+  text-transform: capitalize;
+  opacity: 0.6;
+  font-size: 16px;
+  font-weight: 400;
+  padding-top: 74px;
+}
+@keyframes upAndDowm {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.intro_main .down_arrow {
+  width: 33px;
+  animation: upAndDowm 1.2s infinite;
+  position: relative;
+  margin-bottom: 140px;
+}
+.list_item_wrapper {
+  width: 383px;
+  margin: 0 auto 50px;
+}
+.list-item {
+  display: inline;
+  font-size: 48px;
+  font-weight: 600;
+  transition: 300ms;
+  padding: 10px;
+}
+
+.list-item::before {
+  content: '';
+  display: inline-block;
+  background: url('./icons/dark_house.png') no-repeat left top/cover;
+  width: 53px;
+  height: 53px;
+}
+.list-item.act {
+  color: #fff;
+}
+.list-item.act::before {
+  background: url('./icons/light_house.png') no-repeat left top/cover;
+}
+.panell_img {
+  position: relative;
+  height: 3000px;
+}
+.flying_santa {
+  position: absolute;
+  height: 380px;
+  right: -80px;
+  transform: translate(80px, -13px) rotate(23deg);
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <div class="main_img_wrapper">
+      <img src="./images/Lovepik_com-401339128-data-management-data-analysis-icon-free-vector-illustration-mate.png" alt="메인이미지" />
+    </div>
+    <div class="intro_main">
+      <p>이미 모두의 은행, 패스트뱅크</p>
+      <p>함께 일해요.</p>
+      <p class="join_us">join us</p>
+      <img src="./images/down-arrow.png" alt="아래화살표" class="down_arrow" />
+    </div>
+    <ul class="list_item_wrapper">
+      <li class="list-item">26적금</li>
+      <li class="list-item">저금</li>
+      <li class="list-item">예금</li>
+      <li class="list-item">단기대출</li>
+      <li class="list-item">신용대출</li>
+      <li class="list-item">적금</li>
+      <li class="list-item">담보대출</li>
+      <li class="list-item">26적금</li>
+      <li class="list-item">저금</li>
+      <li class="list-item">예금</li>
+      <li class="list-item">단기대출</li>
+      <li class="list-item">신용대출</li>
+      <li class="list-item">적금</li>
+      <li class="list-item">담보대출</li>
+      <li class="list-item">26적금</li>
+      <li class="list-item">저금</li>
+      <li class="list-item">예금</li>
+      <li class="list-item">단기대출</li>
+      <li class="list-item">신용대출</li>
+      <li class="list-item">적금</li>
+      <li class="list-item">담보대출</li>
+    </ul>
+    <main>
+      <section class="panell_img">
+        <img class="flying_santa" src="./images/santa_flying.png" alt="산타이미지" />
+      </section>
+    </main>
+    <script>
+      window.addEventListener('scroll', () => {
+        const listContainer = document.querySelector('.list_item_wrapper');
+        const listContainerStart = listContainer.offsetTop - 600;
+        const listContainerEnd = listContainer.offsetTop;
+        const listItem = document.querySelectorAll('.list-item');
+        const windowScrollY = window.scrollY;
+        const itemHeight = (listContainerEnd - listContainerStart) / listItem.length;
+
+        listItem.forEach((item, idx) => {
+          if (item.classList.contains('act')) {
+            item.classList.remove('act');
+          }
+          if (windowScrollY > listContainerStart && windowScrollY < listContainerEnd) {
+            const tagetIndex = parseInt((windowScrollY - listContainerStart) / itemHeight);
+            if (idx === tagetIndex) {
+              item.classList.add('act');
+            } else {
+              item.classList.remove('act');
+            }
+          }
+        });
+        const scrollBottom = windowScrollY + document.documentElement.clientHeight;
+        const pannel1Img = document.querySelector('.panell_img');
+        const panell1pos = pannel1Img.offsetTop + pannel1Img.offsetHeight + 100;
+
+        if (scrollBottom > pannel1Img.offsetTop && scrollBottom < panell1pos) {
+          const translateX = 80 - 80 * 4 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
+          const translateY = -13 + 13 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
+          const lotationDegree = 23 - 23 * 4 * ((scrollBottom - pannel1Img.offsetTop) / (pannel1Img.offsetHeight + 100));
+          pannel1Img.children[0].style.transform = `translate(${translateX}px, ${translateY}px) rotate(${lotationDegree}deg)`;
+        }
+      });
+    </script>
+  </body>
+</html>
