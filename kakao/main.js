@@ -99,3 +99,37 @@ function centerElement(el, video) {
     });
   }
 }
+
+// 슬라이더
+
+const sliderContainer = document.querySelector('.slider_container');
+const sliderWrapper = document.querySelector('.slider_content_wrapper');
+const sliderContentWapper = document.querySelector('.slider_content');
+const sliderImages = document.querySelectorAll('.slider_image');
+const sliderIndex = document.querySelector('.slider-index p');
+let currentImage = 0;
+
+const sliderChangeHandler = (step) => {
+  currentImage += step;
+  if (currentImage < 0) {
+    currentImage = sliderImages.length - 1;
+  }
+  if (currentImage >= sliderImages.length) {
+    currentImage = 0;
+  }
+  sliderWrapper.scrollLeft = sliderImages[currentImage].offsetLeft;
+};
+sliderContainer.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (e.target.classList.contains('left-btn')) {
+    sliderChangeHandler(-1);
+  }
+  if (e.target.classList.contains('right-btn')) {
+    sliderChangeHandler(1);
+  }
+});
+sliderWrapper.addEventListener('scroll', () => {
+  const imageWidth = sliderImages[0].offsetWidth;
+  currentImage = Math.round(sliderWrapper.scrollLeft / imageWidth);
+  sliderIndex.innerText = `${currentImage + 1} / ${sliderImages.length}`;
+});
