@@ -1,6 +1,7 @@
 @import url('./reset.css');
 body {
   cursor: none;
+  background-color: #1e4029;
 }
 .cursor {
   position: fixed;
@@ -8,7 +9,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 9999;
+  z-index: 100;
+  pointer-events: none;
 }
 
 .cursor_default_inner {
@@ -57,4 +59,45 @@ body {
     transform: scale(10);
     opacity: 0;
   }
+}
+
+.preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #521714;
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+}
+
+.preloader_btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  margin-top: -60px;
+  margin-left: -60px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  color: rgb(213, 165, 78);
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 600;
+  background-color: rgb(30, 64, 41);
+  cursor: pointer;
+}
+
+.prloader_btn_hold {
+  line-height: 18px;
+}
+.shown-area {
+  display: block;
+  opacity: 1;
+}
+.hidden-area {
+  display: none;
+  opacity: 0;
 }

@@ -33,3 +33,39 @@ function crreateRipple(e) {
 document.addEventListener('click', (e) => {
   crreateRipple(e);
 });
+
+const preloaderBtn = document.querySelector('.preloader_btn');
+const holdText = document.querySelector('.prloader_btn_hold');
+const showSection = document.querySelector('.show_section');
+console.log('showSectio: ', showSection);
+let intervalId = null;
+let scale = 1;
+const preloaderHideThreshold = 14;
+function setPreloaderStyle(scale) {
+  preloaderBtn.style.transform = `scale(${scale})`;
+  holdText.style.opacity = 1 - (scale - 1) / preloaderHideThreshold;
+}
+preloaderBtn.addEventListener('mousedown', () => {
+  intervalId = setInterval(() => {
+    scale += 0.175;
+    setPreloaderStyle(scale);
+    if (scale >= 1 + preloaderHideThreshold) {
+      preloaderBtn.parentElement.classList.remove('shown-area');
+      preloaderBtn.parentElement.classList.add('hidden-area');
+      showSection.classList.remove('hidden-area');
+      showSection.classList.add('shown-area');
+      clearInterval(intervalId);
+    }
+  }, 10);
+});
+
+preloaderBtn.addEventListener('mouseup', () => {
+  clearInterval(intervalId);
+  intervalId = setInterval(() => {
+    scale -= 0.075;
+    if (scale <= 1) {
+      clearInterval(intervalId);
+    }
+    setPreloaderStyle(scale);
+  });
+});
