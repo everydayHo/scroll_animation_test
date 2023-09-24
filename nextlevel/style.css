@@ -1,0 +1,60 @@
+@import url('./reset.css');
+body {
+  cursor: none;
+}
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+.cursor_default_inner {
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(10, 27, 16, 2.5);
+  border: 2px solid #d5a54e;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.cursor_trace_inner {
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.25);
+  transition: transform 400ms ease;
+}
+
+.ripple {
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #d5a54e;
+  animation: ripple 500ms ease-in-out;
+  animation-fill-mode: forwards;
+  z-index: -1;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
