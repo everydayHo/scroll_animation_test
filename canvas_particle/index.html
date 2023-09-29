@@ -14,11 +14,20 @@
       overflow: hidden;
     }
     canvas {
-      background-color: #f2f2f2;
+      filter: url('#gooey');
     }
   </style>
   <body>
     <canvas></canvas>
+    <svg>
+      <defs>
+        <filter id="gooey">
+          <feGaussianBlur stdDeviation="40" in="SourceGraphic" result="blur1" />
+          <feColorMatrix in="blur1" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 100 -23" />
+        </filter>
+      </defs>
+    </svg>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
     <script type="module" src="./index.js"></script>
   </body>
 </html>
