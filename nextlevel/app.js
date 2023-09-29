@@ -37,7 +37,7 @@ document.addEventListener('click', (e) => {
 const preloaderBtn = document.querySelector('.preloader_btn');
 const holdText = document.querySelector('.prloader_btn_hold');
 const showSection = document.querySelector('.show_section');
-console.log('showSectio: ', showSection);
+const posterSection = document.querySelector('.poster_section');
 let intervalId = null;
 let scale = 1;
 const preloaderHideThreshold = 14;
@@ -54,6 +54,8 @@ preloaderBtn.addEventListener('mousedown', () => {
       preloaderBtn.parentElement.classList.add('hidden-area');
       showSection.classList.remove('hidden-area');
       showSection.classList.add('shown-area');
+      posterSection.classList.remove('hidden-area');
+      posterSection.classList.add('shown-area');
       clearInterval(intervalId);
     }
   }, 10);
@@ -68,4 +70,41 @@ preloaderBtn.addEventListener('mouseup', () => {
     }
     setPreloaderStyle(scale);
   });
+});
+showSection.addEventListener('mousemove', (e) => {
+  const xRelativeToHeader = posX / showSection.clientWidth;
+  const yRelativeToHeader = posY / showSection.clientHeight;
+  const headerTitle = document.querySelector('.header_tit');
+  const circle1 = document.querySelector('.circle_01');
+  const circle2 = document.querySelector('.circle_02');
+  headerTitle.style.transform = `translate(${xRelativeToHeader * -30}px, ${yRelativeToHeader * -30}px)`;
+  circle1.style.transform = `translate(${xRelativeToHeader * -10}px, ${yRelativeToHeader * -10}px)`;
+  circle2.style.transform = `translate(${xRelativeToHeader * -15}px, ${yRelativeToHeader * -15}px)`;
+});
+
+const options = {
+  threshold: 0.2,
+};
+const callback = (entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('poster_img_visble');
+    }
+  });
+};
+
+const observer = new IntersectionObserver(callback, options);
+const posterImgWrappers = document.querySelectorAll('.poster_img_wrapper');
+posterImgWrappers.forEach((posterimgwapper) => {
+  observer.observe(posterimgwapper);
+});
+
+const posterPallax = document.querySelector('.poster_parallax');
+posterPallax.addEventListener('mousemove', (e) => {
+  const xrelativeToPosterPrallx = posX / posterPallax.clientWidth;
+  const yrelativeToPosterPrallx = posY / posterPallax.clientHeight;
+  const posterImg2 = document.querySelector('.poster_img_wrapper02');
+  const posterImg3 = document.querySelector('.poster_img_wrapper03');
+  posterImg2.style.transform = `translate(${xrelativeToPosterPrallx * -30}px, ${yrelativeToPosterPrallx * -30}px)`;
+  posterImg3.style.transform = `translate(${xrelativeToPosterPrallx * 30}px, ${yrelativeToPosterPrallx * 30}px)`;
 });
