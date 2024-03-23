@@ -1,0 +1,7 @@
+@import url('./reset.css');
+
+html,
+body {
+	box-sizing: border-box;
+	border: 1px solid #000;
+}
