@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<a href="" class="link_btn1">링크1</a>
+		<a href="" class="link_btn2">링크2</a>
+		<script>
+			const Handler = (target) => (e) => {
+				e.preventDefault();
+				window.open(target, '', 'width=500, height=500, left=0, top=0, scrollbars=yes');
+			};
+			const linkHandler = (el, target) => {
+				const winW = window.innerWidth;
+				console.log(el);
+				const linkBtn = document.querySelector(el);
+				console.log(target);
+				if (winW > 1024) {
+					linkBtn.setAttribute('href', 'javascript:void(0)');
+					linkBtn.addEventListener('click', Handler(target));
+				} else {
+					linkBtn.removeEventListener('click', Handler(target));
+					linkBtn.setAttribute('href', target);
+				}
+			};
+			window.addEventListener('DOMContentLoaded', () => {
+				linkHandler('.link_btn1', 't.html');
+				linkHandler('.link_btn2', 'b.html');
+			});
+			link('.lddd,       .gkgds,  343434_pop.html,         12131.html,.2424242');
+			function link(...arg) {
+				const arguments = arg.toString().split(',');
+				const classNames = [];
+				const targetNames = [];
+				arguments.map((el) => (el.match(/(^\s{0,}\.)/gm) ? classNames.push(el.trim()) : targetNames.push(el.trim())));
+				console.log('class', classNames);
+				console.log('target', targetNames);
+			}
+		</script>
+	</body>
+</html>

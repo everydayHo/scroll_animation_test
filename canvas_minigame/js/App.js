@@ -2,6 +2,8 @@ import Background from './Background.js';
 import Wall from './Wall.js';
 import Player from './Player.js';
 import Coin from './Coin.js';
+import Score from './Score.js';
+import GameHandler from './GameHandler.js';
 
 export default class App {
 	static canvas = document.querySelector('canvas');
@@ -28,6 +30,8 @@ export default class App {
 		this.walls = [new Wall({ type: 'SMALL' })];
 		this.player = new Player();
 		this.coins = [];
+		this.score = new Score();
+		this.gameHandler = new GameHandler();
 		window.addEventListener('resize', this.resize.bind(this));
 	}
 	resize() {
@@ -35,8 +39,7 @@ export default class App {
 		App.canvas.height = App.height * App.dpr;
 		App.ctx.scale(App.dpr, App.dpr);
 		// 반응형때 4:3비율 유지
-		const width =
-			innerWidth > innerHeight ? innerHeight * 0.9 : innerWidth * 0.9;
+		const width = innerWidth > innerHeight ? innerHeight * 0.9 : innerWidth * 0.9;
 		App.canvas.style.width = width + 'px';
 		App.canvas.style.height = width * (3 / 4) + 'px';
 	}
@@ -48,6 +51,7 @@ export default class App {
 			now = Date.now();
 			delta = now - then;
 			if (delta < App.interval) return;
+			// if (this.gameHandler.status !== 'PLAYING') return;
 			App.ctx.clearRect(0, 0, App.width, App.height);
 			// 배경관련
 			this.backgrounds.forEach((background) => {
@@ -70,7 +74,7 @@ export default class App {
 					this.walls.push(newWall);
 
 					// 코인생성관련
-					if (Math.random() < 0.5) {
+					if (Math.random() < 1) {
 						const x = newWall.x + newWall.width / 2;
 						const y = newWall.y2 - newWall.gapY / 2;
 						this.coins.push(new Coin(x, y, newWall.vx));
@@ -93,8 +97,16 @@ export default class App {
 				this.coins[i].draw();
 				if (this.coins[i].x + this.coins[i].width < 0) {
 					this.coins.splice(i, 1);
+					continue;
+				}
+				if (this.coins[i].boundingBox.isColliding(this.player.boundingBox)) {
+					this.coins.splice(i, 1);
+					this.score.coinCount += 1;
 				}
 			}
+			// 점수관련
+			this.score.update();
+			this.score.draw();
 			then = now - (delta % App.interval);
 		};
 		requestAnimationFrame(frame);
