@@ -35,7 +35,7 @@
 				const arguments = arg.toString().split(',');
 				const classNames = [];
 				const targetNames = [];
-				arguments.map((el) => (el.match(/(^\s{0,}\.)/gm) ? classNames.push(el.trim()) : targetNames.push(el.trim())));
+				arguments.map((el) => (el.match(/^\s{0,}\.\w+/) ? classNames.push(el.trim()) : targetNames.push(el.trim())));
 				console.log('class', classNames);
 				console.log('target', targetNames);
 			}
