@@ -8,6 +8,13 @@
 	<body>
 		<a href="" class="link_btn1">링크1</a>
 		<a href="" class="link_btn2">링크2</a>
+
+		<ul class="list1">
+			<li>아메리카노</li>
+			<li>아이스라테</li>
+			<li>녹차</li>
+			<li>홍차</li>
+		</ul>
 		<script>
 			const Handler = (target) => (e) => {
 				e.preventDefault();
@@ -39,6 +46,12 @@
 				console.log('class', classNames);
 				console.log('target', targetNames);
 			}
+			const itemList = document.querySelector('.list1');
+			const newList = [...itemList.children];
+			newList.forEach((el) => {
+				console.log(el);
+				itemList.insertAdjacentElement('beforeend', String(el));
+			});
 		</script>
 	</body>
 </html>
