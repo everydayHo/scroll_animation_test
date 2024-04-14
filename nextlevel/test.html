@@ -37,21 +37,25 @@
 				linkHandler('.link_btn1', 't.html');
 				linkHandler('.link_btn2', 'b.html');
 			});
-			link('.lddd,       .gkgds,  343434_pop.html,         12131.html,.2424242');
-			function link(...arg) {
-				const arguments = arg.toString().split(',');
+			link('.ld_dd, .lint-btn,       .gkgds,   343434_pop.html,         12131.html,.2424242');
+			function link(arg) {
+				const arguments = arg.split(',');
 				const classNames = [];
 				const targetNames = [];
-				arguments.map((el) => (el.match(/^\s{0,}\.\w+/) ? classNames.push(el.trim()) : targetNames.push(el.trim())));
+				arguments.map((el) => (el.match(/^\s{0,}\.\w+(-\w+)?/) ? classNames.push(el.trim()) : targetNames.push(el.trim())));
 				console.log('class', classNames);
 				console.log('target', targetNames);
 			}
 			const itemList = document.querySelector('.list1');
 			const newList = [...itemList.children];
 			newList.forEach((el) => {
-				console.log(el);
-				itemList.insertAdjacentElement('beforeend', String(el));
+				console.log(el.textContent);
+				itemList.insertAdjacentHTML('beforeend', `<li>${el.textContent}</li>`);
 			});
+
+			x = 1;
+			var x;
+			let y = 1;
 		</script>
 	</body>
 </html>

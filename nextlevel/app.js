@@ -113,26 +113,39 @@ const radomBetweenNumber = (max, min) => {
 	return Math.ceil(Math.random() * (max - min) + min);
 };
 
-console.log(radomBetweenNumber(295, 1));
+console.log(radomBetweenNumber(294, 1));
 
-const arr1 = [2, 14, 16, 25, 26, 30, 32, 36, 37, 38, 44];
-const arr2 = [7, 19, 26, 28, 29, 30, 33, 35, 36, 37];
-const arr3 = [5, 9, 12, 18, 21, 23, 24, 25, 26, 36, 39, 43, 45];
-const arr4 = [2, 5, 11, 17, 18, 26, 29, 30, 37, 38, 42, 44];
+const arr1 = [1, 9, 10, 12, 14, 18, 20, 23, 28, 30, 32, 34, 36, 40, 45, 112, 110];
+const arr2 = [4, 7, 9, 11, 12, 17, 19, 21, 24, 26, 35, 36, 40, 43, 45, 112, 115];
+const arr3 = [3, 6, 8, 12, 13, 16, 19, 20, 24, 26, 27, 30, 31, 35, 45, 103];
+const arr4 = [5, 6, 7, 11, 16, 20, 21, 28, 30, 32, 35, 37, 42, 43, 45, 124];
 
-const result = [];
-
-arr1.map((el) => {
-	arr2.map((el2) => {
-		arr3.map((el3) => {
-			arr4.map((el4) => {
-				const matchValue = el === el2 && el2 === el3 && el3 === el4;
-				if (matchValue) {
-					result.push(el4);
-				}
-			});
-		});
+function findCommonNumbers(...args) {
+	return args.reduce((common, currentArray) => {
+		return common.filter((number) => currentArray.includes(number));
 	});
-});
+}
 
-console.log(new Set(result));
+function findTheMostNumbers(...args) {
+	let answer = [];
+	let max = Number.MIN_SAFE_INTEGER;
+	const numbers = new Map();
+	const sumArr = [...args.flat()];
+	for (let x of sumArr) {
+		if (numbers.has(x)) {
+			numbers.set(x, numbers.get(x) + 1);
+			if (numbers.get(x) > max) max = numbers.get(x);
+		} else numbers.set(x, 1);
+	}
+	numbers.forEach((el, idx) => {
+		if (el >= max || el >= max - 1) {
+			answer.push(idx);
+		}
+	});
+	return answer.sort((a, b) => a - b);
+}
+
+const commonNumbers = findCommonNumbers(arr1, arr2, arr3, arr4);
+console.log('commonNumbers: ', commonNumbers);
+const theNumbers = findTheMostNumbers(arr1, arr2, arr3, arr4);
+console.log('theNumbers: ', theNumbers);
