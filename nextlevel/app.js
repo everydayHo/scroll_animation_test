@@ -113,12 +113,13 @@ const radomBetweenNumber = (max, min) => {
 	return Math.ceil(Math.random() * (max - min) + min);
 };
 
-console.log(radomBetweenNumber(294, 1));
+console.log(radomBetweenNumber(286, 1));
 
-const arr1 = [1, 9, 10, 12, 14, 18, 20, 23, 28, 30, 32, 34, 36, 40, 45, 112, 110];
-const arr2 = [4, 7, 9, 11, 12, 17, 19, 21, 24, 26, 35, 36, 40, 43, 45, 112, 115];
-const arr3 = [3, 6, 8, 12, 13, 16, 19, 20, 24, 26, 27, 30, 31, 35, 45, 103];
-const arr4 = [5, 6, 7, 11, 16, 20, 21, 28, 30, 32, 35, 37, 42, 43, 45, 124];
+const arr1 = [4, 6, 11, 15, 19, 20, 22, 23, 24, 26, 29, 33, 36, 43, 44];
+const arr2 = [4, 5, 7, 10, 14, 15, 18, 22, 23, 32, 33, 36, 37, 44, 45];
+const arr3 = [4, 5, 11, 14, 15, 17, 26, 27, 32, 34, 35, 38, 39, 40, 44];
+const arr4 = [7, 8, 11, 13, 14, 17, 21, 24, 27, 34, 38, 39, 40, 41, 43];
+const arr5 = [3, 4, 7, 9, 10, 13, 18, 20, 23, 26, 34, 39, 40, 41, 42];
 
 function findCommonNumbers(...args) {
 	return args.reduce((common, currentArray) => {
@@ -145,7 +146,7 @@ function findTheMostNumbers(...args) {
 	return answer.sort((a, b) => a - b);
 }
 
-const commonNumbers = findCommonNumbers(arr1, arr2, arr3, arr4);
+const commonNumbers = findCommonNumbers(arr4, arr5, arr3);
 console.log('commonNumbers: ', commonNumbers);
-const theNumbers = findTheMostNumbers(arr1, arr2, arr3, arr4);
+const theNumbers = findTheMostNumbers(arr1, arr2, arr3, arr4, arr5);
 console.log('theNumbers: ', theNumbers);
