@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vite App</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<table class="memebar_tb">
+				<caption>
+					멤버 테이블
+				</caption>
+				<thead>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>포지션</th>
+				</thead>
+				<tbody class="member_tb"></tbody>
+			</table>
+			<div class="input_wrap">
+				<label for="id_text">아이디</label>
+				<input type="text" class="input_txt" id="id_text" />
+				<label for="name_text">이름</label>
+				<input type="text" class="input_txt" id="name_text" />
+				<label for="phonenumber_text">전화번호</label>
+				<input type="text" class="input_txt" id="phonenumber_text" />
+				<label for="position_text">포지션</label>
+				<input type="text" class="input_txt" id="position_text" />
+			</div>
+			<div class="btn_wrap">
+				<button type="button" class="btn create_btn">생성</button>
+				<button type="button" class="btn modify_btn">수정</button>
+				<button type="button" class="btn delete_btn">삭제</button>
+			</div>
+		</div>
+		<script type="module" src="/main.js"></script>
+	</body>
+</html>

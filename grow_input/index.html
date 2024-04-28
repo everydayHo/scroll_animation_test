@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 10px;
+				position: relative;
+			}
+			input {
+				padding: 0;
+			}
+			input {
+				overflow: hidden;
+				width: 150px;
+				height: 50px;
+				font-size: 14px;
+				padding: 10px;
+				outline: none;
+				border: none;
+				border: 1px solid #3333;
+			}
+			span {
+				display: inline-block;
+				min-width: 150px;
+				height: 42px;
+				font-size: 14px;
+				border: 1px solid #3333;
+				padding: 10px;
+				position: absolute;
+				opacity: 0;
+				visibility: hidden;
+				bottom: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name="" id="" />
+		<span></span>
+	</body>
+	<script>
+		// const input = document.querySelector('input');
+		// let previousLength = input.value.length; // 이전 입력값의 길이를 저장할 변수를 초기화합니다.
+		// let inputWidth = input.clientWidth;
+
+		// input.addEventListener('input', (e) => {
+		// 	const inputText = e.target.value;
+		// 	const textLength = inputText.length;
+
+		// 	// 입력값이 12 이상인 경우에는 너비를 증가시킵니다.
+		// 	if (textLength > previousLength && textLength >= 12) {
+		// 		inputWidth += 5;
+		// 		input.style.width = inputWidth + 'px';
+		// 	}
+		// 	// 이전 입력값과 현재 입력값의 길이를 비교하여 백스페이스 키를 감지합니다.
+		// 	else if (textLength < previousLength && textLength >= 12) {
+		// 		// 입력값이 줄어들 경우에는 너비를 감소시킵니다.
+		// 		inputWidth -= 5;
+		// 		input.style.width = inputWidth + 'px';
+		// 	} else {
+		// 		if (textLength <= 12) {
+		// 			input.style.width = 'auto';
+		// 		}
+		// 	}
+		// 	// 현재 입력값의 길이를 저장합니다.
+		// 	previousLength = textLength;
+		// });
+
+		const input = document.querySelector('input');
+		const span = document.querySelector('span');
+		input.addEventListener('input', (e) => {
+			span.innerText = e.target.value;
+			let spanWidth = span.clientWidth;
+
+			if (spanWidth > input.clientWidth || spanWidth < input.clientWidth) {
+				input.style.width = spanWidth + 5 + 'px';
+			}
+		});
+	</script>
+</html>
